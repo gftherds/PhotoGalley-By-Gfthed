@@ -46,7 +46,7 @@ public class FlickFetchr {
 
     public void fetchItems(){
         try{
-            String url = Uri.parse("http://api.flickr.com/services/rest/")
+            String url = Uri.parse("https://api.flickr.com/services/rest/")
                     .buildUpon()
                     .appendQueryParameter("method","flickr.photos.getRecent")
                     .appendQueryParameter("api_key", API_KEY)
