@@ -54,13 +54,12 @@ private RecyclerView mPhotoRecyclerView;
 
         @Override
         protected Void doInBackground(Void... params) {
-//            try {
-//                String result = new FlickFetchr().getUrlString("https://www.bignerdranch.com");
-//                Log.i(TAG, "Fetched contents to URL : " + result);
-//            }catch (IOException ioe){
-//                Log.e(TAG, "Failed to fetch URL: ",ioe);
-//            }
-            new FlickFetchr().fetchItems();
+            try {
+                String result = new FlickFetchr().getUrlString("https://www.bignerdranch.com");
+                Log.i(TAG, "Fetched contents to URL : " + result);
+            }catch (IOException ioe){
+                Log.e(TAG, "Failed to fetch URL: ",ioe);
+            }
             return null;
         }
     }
