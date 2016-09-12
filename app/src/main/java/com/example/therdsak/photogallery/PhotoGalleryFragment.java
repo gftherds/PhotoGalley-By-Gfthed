@@ -1,5 +1,6 @@
 package com.example.therdsak.photogallery;
 
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -65,16 +67,16 @@ public class PhotoGalleryFragment extends Fragment {
 
 
     private class PhotoHolder extends RecyclerView.ViewHolder {
-    private TextView mTitleTextView;
+    private ImageView mImageView;
 
         public PhotoHolder(View itemView) {
             super(itemView);
 
-            mTitleTextView = (TextView) itemView;
+            mImageView = (ImageView) itemView.findViewById(R.id.fragment_photo_gallery_image_view);
         }
 
-        public void bindGalleryItem(GalleryItem item){
-            mTitleTextView.setText(item.toString());
+        public void bindDrawable(Drawable drawable){
+            mImageView.setImageDrawable(drawable);
         }
     }
 
@@ -86,15 +88,17 @@ public class PhotoGalleryFragment extends Fragment {
         }
 
         @Override
-        public PhotoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            TextView textView = new TextView(getActivity());
-            return new PhotoHolder(textView);
+        public PhotoHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+           LayoutInflater inflater = LayoutInflater.from(getActivity());
+           View view = inflater.inflate(R.layout.gallery_item,viewGroup,false);
+            return  new PhotoHolder(view);
         }
 
         @Override
         public void onBindViewHolder(PhotoHolder photoHolder, int position) {
             GalleryItem galleryItem = mGalleryItems.get(position);
-            photoHolder.bindGalleryItem(galleryItem);
+            Drawable placeholder = getResources().getDrawable(R.drawable.image_list_view);
+            photoHolder.bindDrawable(placeholder);
 
         }
 
